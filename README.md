@@ -1,47 +1,49 @@
 # skill-radar
 
-Um hook do Claude Code que detecta sozinho, antes de cada mensagem sua, quando um pedido bate com uma skill instalada que **não pode ser chamada automaticamente** (`disable-model-invocation: true`) — e injeta um aviso de uma linha pro Claude, pra ele te sugerir o comando certo em vez de explicar o mecanismo do zero toda vez.
+*[Leia em português](README.pt-BR.md)*
 
-Não precisa de lista manual por skill: ele escaneia de verdade `~/.claude/skills`, `~/.agents/skills` e `~/.claude/plugins/cache`, lê o frontmatter de cada `SKILL.md`, e qualquer skill nova que você instalar — sua, de plugin, ou de qualquer pacote — já entra no radar sem editar nada.
+A Claude Code hook that notices, before each of your messages, when a request matches an installed skill that **can't be invoked automatically** (`disable-model-invocation: true`) — and injects a one-line hint so Claude can point you to the right command instead of re-explaining the mechanism from scratch every time.
 
-## Como funciona
+No per-skill list to maintain: it actually scans `~/.claude/skills`, `~/.agents/skills` and `~/.claude/plugins/cache`, reads every `SKILL.md`'s frontmatter, and any new skill you install — yours, a plugin's, or anyone else's package — is picked up automatically, no edits needed.
 
-![Arquitetura](assets/architecture.svg)
+## How it works
 
-1. Você digita uma mensagem.
-2. O hook `UserPromptSubmit` roda `hint.py` **antes** do Claude processar a mensagem.
-3. `discover.py` escaneia os diretórios de skills (com cache: só re-escaneia se algum `SKILL.md` mudou) e filtra as que têm `disable-model-invocation: true`.
-4. `hint.py` junta esse resultado com `index.json` (curadoria manual, mais precisa em português para as skills que já conhecemos) e tenta casar sua mensagem contra 4 camadas de correspondência, da mais pra menos específica:
-   - **Frase forte**: um trecho que só faz sentido se for aquele pedido ("grill me", "to-spec").
-   - **Partes do nome**: todas as partes de um nome composto aparecem na mensagem, mesmo não-adjacentes ("untangle" ... "codebase").
-   - **Fallback fraco**: palavras tiradas da própria descrição da skill, já filtradas pra tirar as genéricas demais; precisa de 2+ acertos.
-   - **Ambígua + contexto**: uma palavra do dia a dia que também é nome de skill ("retro", "triagem", "wayfinder") só dispara se vier **junto** com uma palavra de projeto/dev (`issue`, `ticket`, `pr`, `bug`, `sessão`, `spec`...). Essa regra é genérica — qualquer skill nova com nome de palavra única já nasce protegida, sem eu precisar notar o caso.
-5. Se bateu, injeta um `additionalContext` de uma ou duas linhas dizendo qual skill parece aplicável e lembrando que, sendo `disable-model-invocation: true`, só você digitando o comando dispara de verdade — nunca o Claude sozinho, mesmo que você confirme em texto.
+![Architecture](assets/architecture.svg)
 
-## Exemplo
+1. You type a message.
+2. The `UserPromptSubmit` hook runs `hint.py` **before** Claude processes the message.
+3. `discover.py` scans the skill directories (cached — only rescans when a `SKILL.md` actually changed) and keeps the ones with `disable-model-invocation: true`.
+4. `hint.py` merges that with `index.json` (hand-curated entries for skills we already know well, including Portuguese phrasing) and tries to match your message against 4 tiers, most to least specific:
+   - **Strong phrase** — a snippet specific enough to fire alone ("grill me", "to-spec").
+   - **Name parts** — every part of a compound name shows up in the message, even non-adjacent ("untangle" ... "codebase").
+   - **Weak fallback** — words pulled from the skill's own description, pruned to drop ones shared by many skills; needs 2+ hits.
+   - **Ambiguous + context** — an everyday word that also happens to be a skill name ("retro", "triage", "wayfinder") only fires when paired with a project/dev-context word (`issue`, `ticket`, `pr`, `bug`, `session`, `spec`...). This rule is generic — any future skill with a single-word name is protected automatically, with no manual tuning.
+5. On a match, it injects a one- or two-line `additionalContext` naming the applicable skill and reminding Claude that, being `disable-model-invocation: true`, only the user typing the command actually fires it — never Claude on its own, even on a verbal "yes".
 
-![Exemplo de uso](assets/example.svg)
+## Example
 
-## Instalação
+![Usage example](assets/example.svg)
 
-Requer `python3` (com `pyyaml`, opcional — tem fallback sem ele) no PATH.
+## Installation
+
+Requires `python3` on PATH (`pyyaml` is optional — there's a fallback parser without it).
 
 ```bash
-git clone <url-deste-repositorio> skill-radar
+git clone <this-repo-url> skill-radar
 cd skill-radar
 ./install.sh
 ```
 
-O `install.sh`:
-- copia `hint.py`, `discover.py` e `index.json` para `~/.claude/skill-radar/`;
-- mescla (sem sobrescrever o resto) um hook `UserPromptSubmit` em `~/.claude/settings.json`;
-- é idempotente — rodar de novo não duplica a entrada, só atualiza o caminho.
+`install.sh`:
+- copies `hint.py`, `discover.py` and `index.json` to `~/.claude/skill-radar/`;
+- merges (never overwrites the rest of) a `UserPromptSubmit` hook into `~/.claude/settings.json`;
+- is idempotent — running it again doesn't duplicate the entry, just refreshes the path.
 
-Depois de instalar, **abra uma sessão nova** do Claude Code — o hook só é lido na inicialização da sessão.
+After installing, **start a new Claude Code session** — the hook is only read at session startup.
 
-### Instalação manual (sem o script)
+### Manual installation (without the script)
 
-Se preferir não rodar `install.sh`, copie os três arquivos pra qualquer pasta e adicione isto em `~/.claude/settings.json` (mesclando com o que já existir em `hooks`, nunca substituindo):
+If you'd rather not run `install.sh`, copy the three files anywhere and add this to `~/.claude/settings.json` (merging with whatever is already in `hooks`, never replacing it):
 
 ```json
 {
@@ -51,7 +53,7 @@ Se preferir não rodar `install.sh`, copie os três arquivos pra qualquer pasta 
         "hooks": [
           {
             "type": "command",
-            "command": "python3 \"/caminho/absoluto/para/hint.py\"",
+            "command": "python3 \"/absolute/path/to/hint.py\"",
             "timeout": 5
           }
         ]
@@ -61,34 +63,34 @@ Se preferir não rodar `install.sh`, copie os três arquivos pra qualquer pasta 
 }
 ```
 
-## Desinstalação
+## Uninstalling
 
-Remova a entrada em `hooks.UserPromptSubmit` do `~/.claude/settings.json` e delete `~/.claude/skill-radar/`.
+Remove the `hooks.UserPromptSubmit` entry from `~/.claude/settings.json` and delete `~/.claude/skill-radar/`.
 
-## Estendendo / corrigindo um falso positivo
+## Extending / fixing a false positive
 
-- **Skill nova, sem curadoria manual:** já funciona sozinha (frases entre aspas na descrição da própria skill + nome + fallback). Nada a fazer.
-- **Quer melhorar a precisão de uma skill específica:** edite `index.json`. Campos aceitos por skill:
-  - `keywords`: frases que disparam sozinhas (uma por linha, sem precisar ser a frase inteira — é checado por `in`, substring).
-  - `risk`: `"alto"` muda a mensagem pra reforçar que não dá nem com "sim" verbal do usuário (reservado pra skills já auditadas manualmente quanto a ações destrutivas/externas sem confirmação).
-  - `ambiguous_keywords` + `context_words`: palavras extras de contexto específicas da skill, somadas às genéricas (`GENERIC_CONTEXT_WORDS` em `hint.py`).
-- Depois de editar `index.json`, nada mais precisa ser feito — `hint.py` lê o arquivo a cada chamada.
+- **A brand-new skill, with no manual curation:** already works on its own (quoted phrases in the skill's own description + its name + the weak fallback). Nothing to do.
+- **Want to sharpen the matching for one specific skill:** edit `index.json`. Fields accepted per skill:
+  - `keywords`: phrases that fire alone (checked by substring, not exact-match — no need for the whole sentence).
+  - `risk`: `"alto"` switches the message to stress that it can't fire even on the user's verbal "yes" (reserved for skills already audited by hand for ungated destructive/external actions).
+  - `ambiguous_keywords` + `context_words`: extra skill-specific context words, added on top of the generic ones (`GENERIC_CONTEXT_WORDS` in `hint.py`).
+- Nothing else needs touching after editing `index.json` — `hint.py` reads it fresh on every call.
 
-## Limitações conhecidas
+## Known limitations
 
-- Não cobre skills *model-invoked* (sem `disable-model-invocation: true`) — essas o Claude já pode chamar sozinho, então não precisam de aviso.
-- A camada de fallback fraco usa palavras da descrição em inglês (a maioria dos `SKILL.md` instalados é em inglês); para pedidos inteiramente em português sem o nome da skill, a camada que realmente carrega o peso é "partes do nome" e "ambígua + contexto", não o fallback.
-- Roda localmente, sem chamada de LLM nem rede — mais rápido e mais previsível, mas não entende sinônimo nem intenção fora do que está escrito aqui.
-- O watcher de configurações do Claude Code só observa pastas que já tinham `settings.json` quando a sessão abriu — por isso é preciso uma sessão nova após instalar/atualizar.
+- Doesn't cover *model-invoked* skills (no `disable-model-invocation: true`) — Claude can already call those on its own, so they don't need a nudge.
+- The weak-fallback tier pulls words from an English description (most installed `SKILL.md` files are in English); for an all-Portuguese request that doesn't mention the skill's name, the tiers doing the real work are "name parts" and "ambiguous + context", not the fallback.
+- Runs fully locally, no LLM call and no network — faster and more predictable, but it doesn't understand synonyms or intent beyond what's written here.
+- Claude Code's settings watcher only watches folders that already had a `settings.json` when the session started, so a new session is needed after installing or updating.
 
-## Resultados dos testes
+## Test results
 
-Bateria de 28 casos (uma skill de cada vez, início de projeto, meio de projeto, e armadilhas de palavra ambígua) + 8 casos extras de borda + 1 caso sintético com uma skill nunca vista antes (`polish`, pra provar que a proteção é genérica, não curada caso a caso): **todos passando**. Validado também em produção, rodando numa sessão real do Claude Code (não só via script).
+A battery of 28 cases (one positive per in-scope skill, project-start chatter, mid-project chatter, and deliberate ambiguous-word traps) + 8 extra edge cases + 1 synthetic case with a never-before-seen skill name (`polish`, to prove the protection is generic rather than hand-tuned per skill): **all passing**. Also validated live, in a real Claude Code session, not just via script.
 
-## Por que existe
+## Why this exists
 
-Nenhuma skill ou plugin publicado faz exatamente isso — escanear o disco de verdade em busca de `disable-model-invocation: true`, via hook determinístico, sem chamada de LLM e sem lista de palavra-chave fixa. O mais parecido em mecanismo manda o prompt pra um servidor externo; os outros são `SKILL.md` que o próprio modelo lê (custam contexto a cada vez) ou têm catálogo fixo em vez de escanear o disco.
+No published skill or plugin does exactly this — a deterministic, local filesystem scan specifically for `disable-model-invocation: true`, with no LLM call and no fixed keyword list. The closest in mechanism sends your prompt to an external server; the rest are `SKILL.md` files the model itself reads (costing context every time) or ship a fixed catalog instead of scanning the disk.
 
-## Licença
+## License
 
-MIT — veja [LICENSE](LICENSE).
+MIT — see [LICENSE](LICENSE).

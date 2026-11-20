@@ -25,13 +25,13 @@ DISCOVERED_PATH = os.path.join(HERE, "discovered.json")
 DISCOVER_SCRIPT = os.path.join(HERE, "discover.py")
 
 HIGH_RISK_MESSAGE = (
-    'Possível skill aplicável: /{name} — risco alto, disable-model-invocation: true. '
-    'NÃO invocar sozinho, nem com "sim" verbal do usuário — isso é bloqueado pelo harness. '
-    'Avisar o usuário e pedir que ele digite o comando /{name} se quiser rodá-la.'
+    'Possibly applicable skill: /{name} — high risk, disable-model-invocation: true. '
+    'Do NOT invoke it yourself, not even on the user\'s verbal "yes" — that\'s blocked by '
+    'the harness. Tell the user and ask them to type /{name} themselves if they want to run it.'
 )
 NORMAL_MESSAGE = (
-    'Possível skill aplicável: /{name} — disable-model-invocation: true. '
-    'Não pode ser chamada sozinha; sugerir ao usuário digitar /{name}.'
+    'Possibly applicable skill: /{name} — disable-model-invocation: true. '
+    'Cannot be invoked by you; suggest the user type /{name}.'
 )
 
 
@@ -73,6 +73,9 @@ def name_parts(name: str):
 # Generic project/dev-context words. Applied to EVERY skill automatically —
 # curated or auto-discovered — as the companion a bare ambiguous word needs
 # before it's allowed to fire. No per-skill tuning required.
+# Deliberately bilingual (EN + PT): this is matching data, not code — it has
+# to recognize whatever language the user actually types in, so Portuguese
+# entries stay even though the rest of this file is English.
 GENERIC_CONTEXT_WORDS = [
     "issue", "issues", "ticket", "tickets", "pr", "bug", "bugs", "repo",
     "repositorio", "repositório", "codigo", "código", "projeto", "project",
