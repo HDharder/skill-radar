@@ -1,0 +1,19 @@
+{
+  "fingerprint": "fixture, not a real scan",
+  "skills": {
+    "untangle-codebase": {
+      "dir": "/fake/untangle-codebase",
+      "phrases": [],
+      "name_tokens": ["untangle-codebase", "untangle codebase"],
+      "fallback_words": ["untangle", "noticing", "working", "agents", "change"],
+      "risk": "normal"
+    },
+    "polish": {
+      "dir": "/fake/polish",
+      "phrases": [],
+      "name_tokens": ["polish", "polish"],
+      "fallback_words": ["interface", "rough", "edges"],
+      "risk": "normal"
+    }
+  }
+}
