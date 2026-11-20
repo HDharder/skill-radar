@@ -1,7 +1,7 @@
 #!/usr/bin/env bash
 # skill-radar installer: copies the hook scripts into ~/.claude/skill-radar
 # and wires a UserPromptSubmit hook into ~/.claude/settings.json (merged,
-# never overwritten — your existing settings are preserved). Safe to re-run.
+# never overwritten; your existing settings are preserved). Safe to re-run.
 set -euo pipefail
 
 SRC_DIR="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"

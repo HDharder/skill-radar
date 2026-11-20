@@ -136,8 +136,8 @@ def prune_to_distinctive(pools: dict, max_doc_freq: int = 2, final_limit: int = 
     across every OTHER skill's pool too. A word like "codebase" that shows up
     in five different skill descriptions is too generic to mean "this one
     specific skill" when it appears in a long, unrelated chunk of text (e.g.
-    a research report quoting several skill descriptions) — exactly the
-    false-positive mode observed in production, not a short-vs-long-prompt
+    a research report quoting several skill descriptions), which is exactly
+    the false-positive mode observed in production, not a short-vs-long-prompt
     problem. This fixes that without penalizing long genuine requests, which
     still match fine on whichever words stay distinctive."""
     doc_freq = {}

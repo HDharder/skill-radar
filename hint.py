@@ -25,12 +25,12 @@ DISCOVERED_PATH = os.path.join(HERE, "discovered.json")
 DISCOVER_SCRIPT = os.path.join(HERE, "discover.py")
 
 HIGH_RISK_MESSAGE = (
-    'Possibly applicable skill: /{name} — high risk, disable-model-invocation: true. '
-    'Do NOT invoke it yourself, not even on the user\'s verbal "yes" — that\'s blocked by '
+    'Possibly applicable skill: /{name} (high risk, disable-model-invocation: true). '
+    'Do NOT invoke it yourself, not even on the user\'s verbal "yes": that\'s blocked by '
     'the harness. Tell the user and ask them to type /{name} themselves if they want to run it.'
 )
 NORMAL_MESSAGE = (
-    'Possibly applicable skill: /{name} — disable-model-invocation: true. '
+    'Possibly applicable skill: /{name} (disable-model-invocation: true). '
     'Cannot be invoked by you; suggest the user type /{name}.'
 )
 
@@ -70,12 +70,12 @@ def name_parts(name: str):
     return [p for p in name.split("-") if len(p) >= 4]
 
 
-# Generic project/dev-context words. Applied to EVERY skill automatically —
-# curated or auto-discovered — as the companion a bare ambiguous word needs
+# Generic project/dev-context words. Applied to EVERY skill automatically,
+# curated or auto-discovered, as the companion a bare ambiguous word needs
 # before it's allowed to fire. No per-skill tuning required.
-# Deliberately bilingual (EN + PT): this is matching data, not code — it has
-# to recognize whatever language the user actually types in, so Portuguese
-# entries stay even though the rest of this file is English.
+# Deliberately bilingual (EN + PT): this is matching data, not code, so it
+# has to recognize whatever language the user actually types in, which is
+# why Portuguese entries stay even though the rest of this file is English.
 GENERIC_CONTEXT_WORDS = [
     "issue", "issues", "ticket", "tickets", "pr", "bug", "bugs", "repo",
     "repositorio", "repositório", "codigo", "código", "projeto", "project",
@@ -88,10 +88,10 @@ _BARE_TOKEN_RE = re.compile(r"^[a-zà-ÿ]+$")
 
 
 def is_bare_token(phrase: str) -> bool:
-    """True for a single alphabetic word with no space or hyphen — the
-    shape that keeps colliding with everyday meanings ("retro", "triagem",
-    "wayfinder"). A phrase with a space or a hyphen is specific enough on
-    its own ("grill me", "to-spec", "untangle codebase")."""
+    """True for a single alphabetic word with no space or hyphen, which is
+    the shape that keeps colliding with everyday meanings ("retro",
+    "triagem", "wayfinder"). A phrase with a space or a hyphen is specific
+    enough on its own ("grill me", "to-spec", "untangle codebase")."""
     return bool(_BARE_TOKEN_RE.match(normalize(phrase)))
 
 
@@ -110,8 +110,8 @@ def build_candidates():
     "ambiguous": [bare words needing a context word alongside],
     "context_words": [the context words that unlock "ambiguous"]}.
 
-    Every bare single-word trigger — whether it came from a hand-written
-    keyword list or from an auto-discovered skill's own name — is demoted
+    Every bare single-word trigger, whether it came from a hand-written
+    keyword list or from an auto-discovered skill's own name, is demoted
     from "fires alone" to "needs a dev-context word too". This is what
     makes the protection generic: a brand-new skill named e.g. "polish" or
     "sprint" gets the same guard with zero manual curation, because the
@@ -156,7 +156,7 @@ def matches(norm_prompt: str, cand: dict) -> bool:
     prompt_words = set(re.findall(r"[a-zà-ÿ]{4,}", norm_prompt))
 
     # All parts of the skill's own name showing up anywhere in the prompt
-    # (not necessarily adjacent) is a strong, language-independent signal —
+    # (not necessarily adjacent) is a strong, language-independent signal:
     # e.g. "untangle" and "codebase" both present, even with other words
     # between them. Requires 2+ parts so a single generic word can't fire it.
     parts = cand["name_parts"]

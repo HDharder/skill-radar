@@ -14,7 +14,7 @@
   <rect x="40" y="160" width="410" height="150" rx="14" fill="#fff1f2" stroke="#fb7185"/>
   <text x="60" y="186" font-size="13" font-weight="600" fill="#881337">Claude (with the hint injected)</text>
   <text x="60" y="210" font-size="12" fill="#9f1239">There's a /triage skill made exactly for</text>
-  <text x="60" y="228" font-size="12" fill="#9f1239">this — but it's high-risk, so I can't run</text>
+  <text x="60" y="228" font-size="12" fill="#9f1239">this, but it's high-risk, so I can't run</text>
   <text x="60" y="246" font-size="12" fill="#9f1239">it myself, not even if you confirm it</text>
   <text x="60" y="264" font-size="12" fill="#9f1239">here in chat.</text>
   <text x="60" y="288" font-size="12" font-weight="600" fill="#9f1239">Type /triage if you want to use it.</text>
@@ -32,5 +32,5 @@
   <text x="550" y="246" font-size="12" fill="#166534">where recipes come from, project name...</text>
   <text x="550" y="270" font-size="11" fill="#15803d" font-style="italic">(carries on normally, no skill mentioned)</text>
 
-  <text x="490" y="345" text-anchor="middle" font-size="11" fill="#64748b">tested live in two real sessions — see README, "Test results"</text>
+  <text x="490" y="345" text-anchor="middle" font-size="11" fill="#64748b">tested live in two real sessions, see README "Test results"</text>
 </svg>
