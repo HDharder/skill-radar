@@ -97,7 +97,7 @@ Every case below shows the exact prompt sent to the hook and its exact output, f
 
 Prompt sent:
 ```
-me ajuda a dar uma triagem nas issues que abriram essa semana?
+can you triage the issues that came in this week?
 ```
 
 Hook output:
@@ -112,7 +112,7 @@ Hook output:
 
 Prompt sent:
 ```
-isso aqui é grande demais pra uma sessão só, queria mapear esse trabalho todo antes de começar
+This is way too big for one session, I want to map this out before we start.
 ```
 
 Hook output:
@@ -127,7 +127,7 @@ Hook output:
 
 Prompt sent:
 ```
-a spec e os tickets já tão prontos, bora pro implement-spec
+The spec and tickets are ready, let's go with implement-spec.
 ```
 
 Hook output:
@@ -142,7 +142,7 @@ Hook output:
 
 Prompt sent:
 ```
-os tickets tão prontos, pode implementar esse ticket aqui
+The tickets are ready, can you implement this ticket here?
 ```
 
 Hook output:
@@ -157,7 +157,7 @@ Hook output:
 
 Prompt sent:
 ```
-não sei qual skill eu uso pra isso, pode me ajudar a escolher?
+I don't know which skill to use for this, can you help me pick?
 ```
 
 Hook output:
@@ -172,7 +172,7 @@ Hook output:
 
 Prompt sent:
 ```
-quero que você me entreviste bem a fundo sobre essa ideia antes de eu decidir
+I want you to grill me thoroughly on this idea before I decide.
 ```
 
 Hook output:
@@ -187,7 +187,7 @@ Hook output:
 
 Prompt sent:
 ```
-faz uma entrevista com docs sobre essa decisão de arquitetura
+Do a grill with docs session on this architecture decision.
 ```
 
 Hook output:
@@ -202,7 +202,7 @@ Hook output:
 
 Prompt sent:
 ```
-bora fazer uma retrospectiva da sessão de hoje?
+Let's do a session retro for today?
 ```
 
 Hook output:
@@ -217,7 +217,7 @@ Hook output:
 
 Prompt sent:
 ```
-quero transformar isso em spec e publicar no tracker
+I want to turn this into a spec and publish it to the tracker.
 ```
 
 Hook output:
@@ -232,7 +232,7 @@ Hook output:
 
 Prompt sent:
 ```
-vamos quebrar em tickets esse plano aqui
+Let's run to-tickets on this plan.
 ```
 
 Hook output:
@@ -247,7 +247,7 @@ Hook output:
 
 Prompt sent:
 ```
-queria melhorar a arquitetura desse código, tá com muita dependência circular
+I want to improve the architecture of this code, there's too much circular dependency.
 ```
 
 Hook output:
@@ -262,7 +262,7 @@ Hook output:
 
 Prompt sent:
 ```
-preciso configurar o repo para as skills antes de usar as outras
+I need to run setup-matt-pocock-skills before using the others.
 ```
 
 Hook output:
@@ -277,7 +277,7 @@ Hook output:
 
 Prompt sent:
 ```
-olha, esse projeto tá uma bagunça total, os arquivos estão emaranhados, mal organizados, cheio de dependência cruzada confusa. queria que você fizesse um untangle bem completo nesse codebase inteiro antes de eu continuar trabalhando nele, porque tá osso de debugar qualquer coisa
+Look, this project is a complete mess, files are tangled, poorly organized, full of confusing cross dependencies. I want you to do a thorough untangle on this whole codebase before I keep working on it, because it's a nightmare to debug anything.
 ```
 
 Hook output:
@@ -292,7 +292,7 @@ Hook output:
 
 Prompt sent:
 ```
-quero fazer um untangle nesse codebase inteiro, tá uma bagunça
+I want to untangle this codebase, it's a mess.
 ```
 
 Hook output:
@@ -307,7 +307,7 @@ Hook output:
 
 Prompt sent:
 ```
-Oi! Vamos começar um projeto novo de um app de finanças pessoais em React Native. Pensei em usar Expo e Supabase como backend.
+Hey! Let's start a new personal finance app project in React Native. I was thinking Expo and Supabase as backend.
 ```
 
 Hook output: none (no `additionalContext` injected).
@@ -319,7 +319,7 @@ Hook output: none (no `additionalContext` injected).
 
 Prompt sent:
 ```
-Pode criar a estrutura inicial de pastas pro projeto, com src, components, hooks e utils?
+Can you set up the initial folder structure for the project, with src, components, hooks and utils?
 ```
 
 Hook output: none (no `additionalContext` injected).
@@ -331,7 +331,7 @@ Hook output: none (no `additionalContext` injected).
 
 Prompt sent:
 ```
-Qual stack você recomendaria pra um SaaS B2B pequeno, Next.js ou Remix?
+Which stack would you recommend for a small B2B SaaS, Next.js or Remix?
 ```
 
 Hook output: none (no `additionalContext` injected).
@@ -343,7 +343,7 @@ Hook output: none (no `additionalContext` injected).
 
 Prompt sent:
 ```
-Esse código de autenticação tá meio confuso mas funciona, vamos seguir com o resto das telas.
+This auth code is a bit messy but it works, let's move on to the rest of the screens.
 ```
 
 Hook output: none (no `additionalContext` injected).
@@ -355,7 +355,7 @@ Hook output: none (no `additionalContext` injected).
 
 Prompt sent:
 ```
-Implementei a tela de login, falta só testar.
+I implemented the login screen, just need to test it.
 ```
 
 Hook output: none (no `additionalContext` injected).
@@ -367,7 +367,7 @@ Hook output: none (no `additionalContext` injected).
 
 Prompt sent:
 ```
-Vamos revisar o PR antes de abrir, só confere se os testes passam.
+Let's review the PR before opening it, just check the tests pass.
 ```
 
 Hook output: none (no `additionalContext` injected).
@@ -379,7 +379,7 @@ Hook output: none (no `additionalContext` injected).
 
 Prompt sent:
 ```
-Depois de implementar, preciso que você faça o code review padrão.
+After implementing, I need you to do the standard code review.
 ```
 
 Hook output: none (no `additionalContext` injected).
@@ -391,7 +391,7 @@ Hook output: none (no `additionalContext` injected).
 
 Prompt sent:
 ```
-Ih, deu erro ali na função de pagamento, dá uma olhada rápida?
+Ugh, there's an error in the payment function, can you take a quick look?
 ```
 
 Hook output: none (no `additionalContext` injected).
@@ -403,7 +403,7 @@ Hook output: none (no `additionalContext` injected).
 
 Prompt sent:
 ```
-A triagem de malária já foi feita no laboratório, os resultados saem hoje.
+The malaria triage at the ER was already completed, results come out today.
 ```
 
 Hook output: none (no `additionalContext` injected).
@@ -415,7 +415,7 @@ Hook output: none (no `additionalContext` injected).
 
 Prompt sent:
 ```
-Quero um visual retro pra esse app, tipo anos 80, com cores saturadas.
+I want a retro look for this app, like the 80s, with saturated colors.
 ```
 
 Hook output: none (no `additionalContext` injected).
@@ -427,7 +427,7 @@ Hook output: none (no `additionalContext` injected).
 
 Prompt sent:
 ```
-Esse jogo tem uma pegada bem retro, lembra os clássicos de 16-bit.
+This game has a real retro vibe, reminds me of classic 16-bit games.
 ```
 
 Hook output: none (no `additionalContext` injected).
@@ -439,7 +439,7 @@ Hook output: none (no `additionalContext` injected).
 
 Prompt sent:
 ```
-Esse mapa de carnaval é incrível, vamos mapear o trajeto do bloco pra galera não se perder.
+This carnival map is amazing, let's map out the parade route so people don't get lost.
 ```
 
 Hook output: none (no `additionalContext` injected).
@@ -451,7 +451,7 @@ Hook output: none (no `additionalContext` injected).
 
 Prompt sent:
 ```
-Vou implementar uma função de debounce aqui no hook.
+I'm going to implement a debounce function here in the hook.
 ```
 
 Hook output: none (no `additionalContext` injected).
@@ -463,7 +463,7 @@ Hook output: none (no `additionalContext` injected).
 
 Prompt sent:
 ```
-Esse codebase tá ok, só precisa de uns testes a mais.
+This codebase is fine, it just needs a few more tests.
 ```
 
 Hook output: none (no `additionalContext` injected).
@@ -471,11 +471,11 @@ Hook output: none (no `additionalContext` injected).
 </details>
 
 <details>
-<summary>29. boundary: context word alone (issue, no 'triagem') (stayed silent)</summary>
+<summary>29. boundary: context word alone (issue, no 'triage') (stayed silent)</summary>
 
 Prompt sent:
 ```
-abri uma issue nova no repo pra acompanhar esse bug
+I opened a new issue in the repo to track this bug.
 ```
 
 Hook output: none (no `additionalContext` injected).
@@ -483,11 +483,11 @@ Hook output: none (no `additionalContext` injected).
 </details>
 
 <details>
-<summary>30. boundary: context word alone (sessão, no 'retro') (stayed silent)</summary>
+<summary>30. boundary: context word alone (session, no 'retro') (stayed silent)</summary>
 
 Prompt sent:
 ```
-vamos fazer um resumo dessa sessão de trabalho?
+Let's do a summary of this work session?
 ```
 
 Hook output: none (no `additionalContext` injected).
@@ -499,7 +499,7 @@ Hook output: none (no `additionalContext` injected).
 
 Prompt sent:
 ```
-o Messi tem muita skill no drible
+Messi has so much skill in dribbling.
 ```
 
 Hook output: none (no `additionalContext` injected).
@@ -511,7 +511,7 @@ Hook output: none (no `additionalContext` injected).
 
 Prompt sent:
 ```
-bora fazer um grill no fim de semana?
+Let's have a grill this weekend?
 ```
 
 Hook output: none (no `additionalContext` injected).
@@ -523,7 +523,7 @@ Hook output: none (no `additionalContext` injected).
 
 Prompt sent:
 ```
-comprei o ticket pro show de sábado
+I bought the ticket for Saturday's show.
 ```
 
 Hook output: none (no `additionalContext` injected).
@@ -531,11 +531,11 @@ Hook output: none (no `additionalContext` injected).
 </details>
 
 <details>
-<summary>34. wayfinder - bare name matches even without a 2nd part (stayed silent)</summary>
+<summary>34. wayfinder - bare name, out of context (trail guide) (stayed silent)</summary>
 
 Prompt sent:
 ```
-contratei um wayfinder pra me guiar na trilha
+I hired a wayfinder to guide me on the trail.
 ```
 
 Hook output: none (no `additionalContext` injected).
@@ -543,11 +543,11 @@ Hook output: none (no `additionalContext` injected).
 </details>
 
 <details>
-<summary>35. to-spec - 'spec' alone (laptop specs) (stayed silent)</summary>
+<summary>35. to-spec - 'specs' alone (laptop specs) (stayed silent)</summary>
 
 Prompt sent:
 ```
-vou comprar um notebook, quais specs você recomenda?
+I'm buying a laptop, what specs would you recommend?
 ```
 
 Hook output: none (no `additionalContext` injected).
@@ -559,7 +559,7 @@ Hook output: none (no `additionalContext` injected).
 
 Prompt sent:
 ```
-qual o setup de teclado e mouse que você usa?
+What keyboard and mouse setup do you use?
 ```
 
 Hook output: none (no `additionalContext` injected).
