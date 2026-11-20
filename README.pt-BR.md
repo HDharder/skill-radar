@@ -30,13 +30,21 @@ Não precisa de lista manual por skill: ele escaneia de verdade `~/.claude/skill
 
 Requer `python3` (com `pyyaml`, opcional, tem fallback sem ele) no PATH.
 
+Com Node instalado, sem precisar publicar no registro do npm:
+
 ```bash
-git clone https://github.com/hdharder/skill-radar
+npx github:HDharder/skill-radar
+```
+
+Ou clone e rode o instalador direto:
+
+```bash
+git clone https://github.com/HDharder/skill-radar
 cd skill-radar
 ./install.sh
 ```
 
-O `install.sh`:
+Dos dois jeitos, é o `install.sh` quem faz o trabalho (o caminho via npx só roda ele pra você):
 - copia `hint.py`, `discover.py` e `index.json` para `~/.claude/skill-radar/`;
 - mescla um hook `UserPromptSubmit` em `~/.claude/settings.json`, sem tocar no resto do arquivo;
 - é idempotente, rodar de novo não duplica a entrada, só atualiza o caminho.
@@ -87,7 +95,13 @@ Remova a entrada em `hooks.UserPromptSubmit` do `~/.claude/settings.json` e dele
 
 ## Resultados dos testes
 
-Uma bateria de 36 casos: um positivo pra cada skill em escopo, conversa de início de projeto, conversa de meio de projeto, armadilhas de palavra ambígua de propósito, e checagens de borda das camadas novas de correspondência. Os 36 se comportam como esperado. Tem ainda um 37º caso, sintético, rodado separadamente (não listado abaixo porque precisou injetar temporariamente uma skill falsa): uma skill nunca vista antes, com nome de palavra única ("polish"), recebe a mesma proteção automaticamente, sem curadoria manual, provando que a correção é genérica e não ajustada caso a caso.
+Uma bateria de 36 casos: um positivo pra cada skill em escopo, conversa de início de projeto, conversa de meio de projeto, armadilhas de palavra ambígua de propósito, e checagens de borda das camadas de correspondência. Os 36 se comportam como esperado. Tem ainda um caso sintético provando que a proteção contra palavra ambígua é genérica, não ajustada caso a caso: uma skill nunca vista antes, com nome de palavra única ("polish"), recebe a mesma proteção automaticamente, sem curadoria manual.
+
+Esses 38 casos também são uma suíte de testes executável em [`tests/`](tests/test_hint.py), rodada contra um fixture em vez do que estiver instalado na sua máquina, então é portátil:
+
+```bash
+python3 tests/test_hint.py
+```
 
 Cada caso abaixo mostra o prompt exato mandado pro hook e a saída exata dele, pra transparência total.
 

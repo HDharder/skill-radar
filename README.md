@@ -28,13 +28,21 @@ No per-skill list to maintain: it actually scans `~/.claude/skills`, `~/.agents/
 
 Requires `python3` on PATH (`pyyaml` is optional, there's a fallback parser without it).
 
+With Node installed, no npm registry publish needed:
+
 ```bash
-git clone https://github.com/hdharder/skill-radar
+npx github:HDharder/skill-radar
+```
+
+Or clone and run the installer directly:
+
+```bash
+git clone https://github.com/HDharder/skill-radar
 cd skill-radar
 ./install.sh
 ```
 
-`install.sh`:
+Either way, `install.sh` (the npx path just runs it for you):
 - copies `hint.py`, `discover.py` and `index.json` to `~/.claude/skill-radar/`;
 - merges a `UserPromptSubmit` hook into `~/.claude/settings.json` without touching the rest of the file;
 - is idempotent, running it again doesn't duplicate the entry, it just refreshes the path.
@@ -85,7 +93,13 @@ Remove the `hooks.UserPromptSubmit` entry from `~/.claude/settings.json` and del
 
 ## Test results
 
-A battery of 36 cases: one positive per in-scope skill, project-start chatter, mid-project chatter, deliberate ambiguous-word traps, and boundary checks on the new matching tiers. All 36 behave as expected. There's also a 37th, synthetic case run separately (not shown below since it needed temporarily injecting a fake skill): a never-before-seen single-word skill name ("polish") gets the same ambiguous-word protection automatically, with zero manual curation, proving the fix is generic rather than hand-tuned per skill.
+A battery of 36 cases: one positive per in-scope skill, project-start chatter, mid-project chatter, deliberate ambiguous-word traps, and boundary checks on the matching tiers. All 36 behave as expected. There's also a synthetic case proving the ambiguous-word protection is generic, not hand-tuned per skill: a never-before-seen single-word skill name ("polish") gets the same protection automatically, with zero manual curation.
+
+These 38 cases are also an executable test suite in [`tests/`](tests/test_hint.py), run against a fixture instead of whatever happens to be installed on your machine, so they're portable:
+
+```bash
+python3 tests/test_hint.py
+```
 
 Every case below shows the exact prompt sent to the hook and its exact output, for full transparency.
 

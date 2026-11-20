@@ -1,0 +1,30 @@
+{
+  "name": "skill-radar",
+  "version": "1.0.0",
+  "description": "A Claude Code hook that notices when a request matches a skill you can only invoke yourself (disable-model-invocation: true), and nudges toward the right command.",
+  "bin": {
+    "skill-radar": "./bin/install.js"
+  },
+  "files": [
+    "bin/install.js",
+    "install.sh",
+    "hint.py",
+    "discover.py",
+    "index.json"
+  ],
+  "engines": {
+    "node": ">=14"
+  },
+  "license": "MIT",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/HDharder/skill-radar"
+  },
+  "keywords": [
+    "claude-code",
+    "claude",
+    "hook",
+    "skills",
+    "disable-model-invocation"
+  ]
+}

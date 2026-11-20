@@ -44,6 +44,12 @@ def normalize(s: str) -> str:
 
 
 def ensure_discovered_fresh():
+    # Lets the test suite pin a fixture discovered.json instead of this
+    # rescanning the real machine's skill directories, so tests are
+    # deterministic regardless of what's actually installed. Not used in
+    # normal operation.
+    if os.environ.get("SKILL_RADAR_SKIP_DISCOVER"):
+        return
     try:
         subprocess.run(
             [sys.executable, DISCOVER_SCRIPT],
