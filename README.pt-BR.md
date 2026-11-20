@@ -570,6 +570,16 @@ Hook output: none (no `additionalContext` injected).
 
 </details>
 
+## Projetos relacionados
+
+Outros projetos também tentam empurrar o Claude pra skill certa. Nenhum dos que encontrei cobre exatamente a lacuna que este hook ataca:
+
+- **[jev-skill-suggestion](https://www.aitmpl.com/component/mod/productivity/jev-skill-suggestion)** (mod da comunidade, dentro de `davila7/claude-code-templates`): sugere skills via hook, mas a própria documentação dele diz que exclui explicitamente skills com `disable-model-invocation: true`, deixando elas de fora das sugestões por completo. É exatamente esse caso que este projeto existe pra cobrir.
+- **[skill-compass](https://by-sonic.github.io/skill-compass/)**: um hook que lê seu repositório pra entender do que ele é feito e diz ao Claude quais skills carregar, voltado pras skills comuns (model-invocable), não as de invocação manual.
+- **[Dispatch](https://skills.cat/skills/visionairyse/dispatch)** (VisionAIrySE): um roteador em tempo de execução pra todo o marketplace (plugins, servidores MCP, skills), usando um classificador de LLM, hospedado ou com sua própria chave de API. Escopo mais amplo, mas manda seu prompt pra um serviço externo no modo hospedado, ou custa uma chamada de LLM de qualquer forma, diferente do escaneamento local e determinístico deste projeto.
+
+Nenhum desses foi encontrado atacando especificamente skills `disable-model-invocation: true` com um escaneamento local, sem LLM, baseado em frontmatter.
+
 ## Por que existe
 
 Nenhuma skill ou plugin publicado faz exatamente isso: um escaneamento determinístico, local, do disco, especificamente em busca de `disable-model-invocation: true`, sem chamada de LLM e sem lista de palavra-chave fixa. O mais parecido em mecanismo manda o prompt pra um servidor externo; os outros são `SKILL.md` que o próprio modelo lê (custam contexto a cada vez) ou têm catálogo fixo em vez de escanear o disco.
