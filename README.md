@@ -26,6 +26,19 @@ No per-skill list to maintain: it actually scans `~/.claude/skills`, `~/.agents/
 
 ## Installation
 
+Pick ONE of the three methods below. They all end up doing the same thing (registering the same hook), so combining them just means the hint gets injected twice.
+
+### Option A: as a Claude Code plugin (recommended)
+
+```
+/plugin marketplace add HDharder/skill-radar
+/plugin install skill-radar@skill-radar
+```
+
+This uses Claude Code's own plugin system: no Python setup step, no `~/.claude/settings.json` editing. Start a new session afterward for it to take effect. (Authored against the published plugin manifest reference; if your Claude Code version handles plugin hooks differently, fall back to option B.)
+
+### Option B: npx or git clone, with install.sh
+
 Requires `python3` on PATH (`pyyaml` is optional, there's a fallback parser without it).
 
 With Node installed, no npm registry publish needed:
@@ -49,7 +62,7 @@ Either way, `install.sh` (the npx path just runs it for you):
 
 After installing, start a new Claude Code session. The hook is only read at session startup.
 
-### Manual installation (without the script)
+### Option C: fully manual (without the script)
 
 If you'd rather not run `install.sh`, copy the three files anywhere and add this to `~/.claude/settings.json` (merging with whatever is already in `hooks`, never replacing it):
 

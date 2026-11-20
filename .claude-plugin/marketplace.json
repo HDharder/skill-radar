@@ -1,0 +1,15 @@
+{
+  "name": "skill-radar",
+  "description": "A hook that notices when a request matches a skill you can only invoke yourself (disable-model-invocation: true), and nudges toward the right command.",
+  "owner": {
+    "name": "HDharder",
+    "url": "https://github.com/HDharder"
+  },
+  "plugins": [
+    {
+      "name": "skill-radar",
+      "source": "./",
+      "description": "A Claude Code hook that notices when a request matches a skill you can only invoke yourself (disable-model-invocation: true), and nudges toward the right command."
+    }
+  ]
+}
