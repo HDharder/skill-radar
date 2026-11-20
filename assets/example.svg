@@ -1,0 +1,36 @@
+<svg viewBox="0 0 980 360" xmlns="http://www.w3.org/2000/svg" font-family="Helvetica, Arial, sans-serif">
+  <rect x="0" y="0" width="980" height="360" fill="#ffffff"/>
+
+  <!-- column headers -->
+  <text x="245" y="34" text-anchor="middle" font-size="16" font-weight="700" fill="#0f172a">dispara (skill relevante)</text>
+  <text x="735" y="34" text-anchor="middle" font-size="16" font-weight="700" fill="#0f172a">fica em silêncio (conversa normal)</text>
+
+  <!-- LEFT: fires -->
+  <rect x="40" y="60" width="410" height="80" rx="14" fill="#f1f5f9" stroke="#cbd5e1"/>
+  <text x="60" y="88" font-size="13" fill="#0f172a">você</text>
+  <text x="60" y="110" font-size="13" fill="#1e293b">"me ajuda a dar uma triagem nas issues</text>
+  <text x="60" y="128" font-size="13" fill="#1e293b">que abriram essa semana?"</text>
+
+  <rect x="40" y="160" width="410" height="150" rx="14" fill="#fff1f2" stroke="#fb7185"/>
+  <text x="60" y="186" font-size="13" font-weight="600" fill="#881337">Claude (com o hint injetado)</text>
+  <text x="60" y="210" font-size="12" fill="#9f1239">Há uma skill /triage que serve exatamente</text>
+  <text x="60" y="228" font-size="12" fill="#9f1239">pra isso — mas ela é de risco alto, então</text>
+  <text x="60" y="246" font-size="12" fill="#9f1239">não posso rodá-la sozinho, nem se você</text>
+  <text x="60" y="264" font-size="12" fill="#9f1239">confirmar aqui no chat.</text>
+  <text x="60" y="288" font-size="12" font-weight="600" fill="#9f1239">Digite /triage se quiser usá-la.</text>
+
+  <!-- RIGHT: silent -->
+  <rect x="530" y="60" width="410" height="80" rx="14" fill="#f1f5f9" stroke="#cbd5e1"/>
+  <text x="550" y="88" font-size="13" fill="#0f172a">você</text>
+  <text x="550" y="110" font-size="13" fill="#1e293b">"Vamos começar um projeto novo de</text>
+  <text x="550" y="128" font-size="13" fill="#1e293b">um app de receitas em React Native."</text>
+
+  <rect x="530" y="160" width="410" height="150" rx="14" fill="#f0fdf4" stroke="#4ade80"/>
+  <text x="550" y="186" font-size="13" font-weight="600" fill="#14532d">Claude (nenhum hint injetado)</text>
+  <text x="550" y="210" font-size="12" fill="#166534">Claro! Antes de começar, preciso alinhar</text>
+  <text x="550" y="228" font-size="12" fill="#166534">algumas decisões: qual stack (Expo?),</text>
+  <text x="550" y="246" font-size="12" fill="#166534">de onde vêm as receitas, nome do projeto...</text>
+  <text x="550" y="270" font-size="11" fill="#15803d" font-style="italic">(segue normal, sem menção a skill nenhuma)</text>
+
+  <text x="490" y="345" text-anchor="middle" font-size="11" fill="#64748b">testado ao vivo em duas sessões reais — ver README, seção "Resultados dos testes"</text>
+</svg>

@@ -1,0 +1,45 @@
+{
+  "ask-matt": {
+    "keywords": ["qual skill", "que skill", "which skill", "ask-matt", "não sei qual skill", "skill eu uso"]
+  },
+  "grill-me": {
+    "keywords": ["grill me", "grill-me", "me entreviste", "sharpen this plan", "stress-test this idea", "stress test my thinking"]
+  },
+  "grill-with-docs": {
+    "keywords": ["grill with docs", "grill-with-docs", "entrevista com docs", "entrevista e documentar"]
+  },
+  "implement": {
+    "keywords": ["implementar essa spec", "implementar os tickets", "implement this ticket", "build this ticket", "implementar esse ticket"]
+  },
+  "improve-codebase-architecture": {
+    "keywords": ["melhorar a arquitetura", "improve architecture", "improve the architecture", "deepening opportunities", "refatorar arquitetura do codigo", "refatorar arquitetura do código"]
+  },
+  "retro": {
+    "keywords": ["retrospectiva da sessão", "retrospectiva da sessao", "retro da sessão", "retro da sessao", "retro dessa sessão", "retro dessa sessao", "retro desse código", "retro desse codigo", "session retro", "coding retro"],
+    "ambiguous_keywords": ["retro", "retrospective"],
+    "context_words": ["sessão", "sessao", "coding", "session", "sprint", "trabalho"]
+  },
+  "to-spec": {
+    "keywords": ["transformar isso em spec", "turn this into a spec", "to-spec", "publicar a spec", "virar spec"]
+  },
+  "to-tickets": {
+    "keywords": ["quebrar em tickets", "break into tickets", "to-tickets", "criar os tickets", "dividir em tickets"]
+  },
+  "setup-matt-pocock-skills": {
+    "keywords": ["setup matt pocock", "setup-matt-pocock-skills", "configurar esse repo pras skills", "configurar o repo para as skills"]
+  },
+  "triage": {
+    "risk": "alto",
+    "keywords": ["issue triage", "pr triage", "o que precisa da minha atenção", "triar as issues", "triagem das issues", "triagem nas issues", "dar uma triagem", "fazer a triagem"],
+    "ambiguous_keywords": ["triagem", "triage"],
+    "context_words": ["issue", "issues", "pr", "ticket", "tickets", "bug", "repo", "github"]
+  },
+  "wayfinder": {
+    "risk": "alto",
+    "keywords": ["wayfinder", "mapear esse trabalho", "map this out", "plano grande demais pra uma sessão", "huge chunk of work", "trabalho grande demais"]
+  },
+  "implement-spec": {
+    "risk": "alto",
+    "keywords": ["implement-spec", "implementar a spec em código", "implementar a spec em codigo", "implement the spec in code"]
+  }
+}
