@@ -23,7 +23,7 @@ import unittest
 REPO_ROOT = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 FIXTURES_DIR = os.path.join(os.path.dirname(os.path.abspath(__file__)), "fixtures")
 
-# (description, prompt, expected_skill_or_None) — same 36 cases as README.md's
+# (description, prompt, expected_skill_or_None): same 36 cases as README.md's
 # "Test results" section, kept in sync by hand; if you change one, change
 # both.
 CASES = [
